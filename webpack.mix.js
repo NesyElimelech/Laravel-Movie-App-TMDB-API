@@ -12,5 +12,11 @@ require('laravel-mix-purgecss');
  */
 
 mix
+  .js('resources/js/app.js', 'public/js')
   .postCss('resources/css/app.css', 'public/css', [require('tailwindcss')])
-  .purgeCss();
+  .browserSync('127.0.0.1:8000')
+  .purgeCss({
+    enabled: mix.inProduction(),
+    folders: ['resources'],
+    extensions: ['html', 'js', 'php', 'vue'],
+  });
